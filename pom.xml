@@ -5,15 +5,17 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>lou.drew.kotlin</groupId>
-    <artifactId>discord</artifactId>
+    <artifactId>octo.funicular</artifactId>
     <version>1.0.0</version>
 
     <properties>
         <!--<kotlin.compiler.incremental>true</kotlin.compiler.incremental>-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <kotlin.version>1.5.10</kotlin.version>
+        <kotlin.version>1.5.21</kotlin.version>
         <java.version>11</java.version>
-        <diskord.version>2.0.2</diskord.version>
+
+        <kord.version>0.8.0-M4</kord.version>
+        <junit.version>5.7.2</junit.version>
     </properties>
 
     <dependencies>
@@ -22,26 +24,22 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
             <artifactId>kotlin-stdlib</artifactId>
             <version>${kotlin.version}</version>
         </dependency>
-        <!--<dependency>
-            <groupId>com.jessecorbett</groupId>
-            <artifactId>diskord-bot</artifactId>
-            <version>${diskord.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.jessecorbett</groupId>
-            <artifactId>diskord-core</artifactId>
-            <version>2.0.2</version>
-        </dependency>-->
         <dependency>
             <groupId>dev.kord</groupId>
             <artifactId>kord-core</artifactId>
-            <version>0.8.0-M4</version>
+            <version>${kord.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
     <build>
         <sourceDirectory>src/main/kotlin</sourceDirectory>
-        <!--<testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>-->
+        <testSourceDirectory>src/test/kotlin</testSourceDirectory>
 
         <plugins>
             <plugin>
@@ -67,9 +65,8 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
                         </goals>
                         <configuration>
                             <sourceDirs>
-                                <!--<source>src/test/java</source>
                                 <source>src/test/kotlin</source>
-                                <source>src/test/resources</source>-->
+                                <source>src/test/resources</source>
                             </sourceDirs>
                         </configuration>
                     </execution>
@@ -90,7 +87,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
                         <configuration>
                             <archive>
                                 <manifest>
-                                    <mainClass>HelloWorldKt</mainClass>
+                                    <mainClass>com.octo.funicular.HelloWorldKt</mainClass>
                                 </manifest>
                             </archive>
                             <descriptorRefs>
@@ -99,6 +96,12 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M3</version>
             </plugin>
         </plugins>
 
