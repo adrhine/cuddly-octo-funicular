@@ -11,10 +11,10 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <properties>
         <!--<kotlin.compiler.incremental>true</kotlin.compiler.incremental>-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <kotlin.version>1.5.21</kotlin.version>
+        <kotlin.version>1.5.30</kotlin.version>
         <java.version>11</java.version>
 
-        <kord.version>0.8.0-M4</kord.version>
+        <kord.version>0.8.0-M5</kord.version>
         <junit.version>5.7.2</junit.version>
     </properties>
 
@@ -35,6 +35,12 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-test</artifactId>
+            <version>${kotlin.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -49,7 +55,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
                 <executions>
                     <execution>
                         <id>compile</id>
-                        <phase>process-sources</phase>
+                        <phase>compile</phase>
                         <goals>
                             <goal>compile</goal>
                         </goals>
@@ -59,18 +65,15 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
                     </execution>
                     <execution>
                         <id>test-compile</id>
-                        <phase>process-test-sources</phase>
+                        <phase>test-compile</phase>
                         <goals>
                             <goal>test-compile</goal>
                         </goals>
-                        <configuration>
-                            <sourceDirs>
-                                <source>src/test/kotlin</source>
-                                <source>src/test/resources</source>
-                            </sourceDirs>
-                        </configuration>
                     </execution>
                 </executions>
+                <configuration>
+                    <jvmTarget>1.8</jvmTarget>
+                </configuration>
             </plugin>
 
             <plugin>
